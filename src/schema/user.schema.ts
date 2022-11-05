@@ -19,5 +19,10 @@ export const createUserSchema = object({
             required_error:"Email is required"
         }).email("Please provide a valid email")
 
-    }).refine((data)=>data.password == data.passwordConfirmation)
+    }).refine((data)=>data.password == data.passwordConfirmation,{
+        message:"Passwords do not match",
+        path: ["passwordConfirmation"]
+    })
 }) 
+
+export type CreateUserInput = TypeOf<typeof createUserSchema>['body']
