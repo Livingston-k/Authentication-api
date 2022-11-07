@@ -1,11 +1,12 @@
-import express from 'express'
-const router = express.Router()
-import user from './user.routes'
-import auth from './auth.routes'
-router.use(user)
-router.use(auth)
-router.get('/health',(_,res)=>{
-res.sendStatus(200)
-})
+import express from "express";
+import user from "./user.routes";
+import auth from "./auth.routes";
 
-export default router
+const router = express.Router();
+
+router.get("/healthcheck", (_, res) => res.sendStatus(200));
+
+router.use(user);
+router.use(auth);
+
+export default router;
